@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/login.html');
 });
 
-// 4. Signup route
+// Signup route
 app.post('/signup', (req, res) => {
     const { username, password } = req.body;
 
@@ -35,8 +35,11 @@ app.post('/signup', (req, res) => {
     }
 
     users.push({ username, password });
-    res.status(201).send('User registered successfully.');
+
+    // Redirect to dashboard after successful signup
+    res.redirect('/dashboard');
 });
+
 
 // 5. Login route
 app.post('/login', (req, res) => {
@@ -51,6 +54,11 @@ app.post('/login', (req, res) => {
     res.redirect('/dashboard');
 });
 
+// Serve the signup page
+app.get('/signup', (req, res) => {
+    res.sendFile(__dirname + '/public/signup.html');
+  });
+  
 
 // 6. Logout route
 app.post('/logout', (req, res) => {
