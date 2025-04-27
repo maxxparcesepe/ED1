@@ -21,6 +21,15 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+
+const path = require('path');
+
+// ... inside your /signup route:
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'signup.html'));
+});
+
+  
 // Signup route
 app.post('/signup', (req, res) => {
     const { username, password } = req.body;
@@ -54,11 +63,6 @@ app.post('/login', (req, res) => {
     res.redirect('/dashboard');
 });
 
-// Serve the signup page
-app.get('/signup', (req, res) => {
-    res.sendFile(__dirname + '/public/signup.html');
-  });
-  
 
 // 6. Logout route
 app.post('/logout', (req, res) => {
